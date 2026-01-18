@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulukışla Oto Lastik | 1998'den Beri Yollardayız</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET VE TEMEL AYARLAR */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #536dfe;
+            --danger: #d32f2f;
+            --light: #f8f9fa;
+            --dark: #212121;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background-color: #f5f7ff;
+            transition: var(--transition);
+        }
+
+        body.arabic {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        .danger {
+            color: var(--danger);
+        }
+
+        /* DİL SEÇİCİ */
+        .language-selector {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            padding: 10px;
+            display: flex;
+            gap: 5px;
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--light);
+        }
+
+        @media (max-width: 768px) {
+            .language-selector {
+                top: 80px;
+                right: 10px;
+            }
+        }
+
+        .lang-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: var(--light);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent);
+            color: white;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* ACİL BANDI */
+        .emergency-bar {
+            background: linear-gradient(90deg, var(--danger), #f44336);
+            color: var(--text-light);
+            padding: 12px 0;
+            font-size: 15px;
+            position: relative;
+            z-index: 1000;
+            animation: emergencyPulse 2s infinite;
+        }
+
+        @keyframes emergencyPulse {
+            0% { background: linear-gradient(90deg, #d32f2f, #f44336); }
+            50% { background: linear-gradient(90deg, #f44336, #ff5722); }
+            100% { background: linear-gradient(90deg, #d32f2f, #f44336); }
+        }
+
+        .emergency-bar .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .emergency-bar span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .emergency-bar i {
+            color: #ffeb3b;
+            font-size: 18px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo i {
+            font-size: 36px;
+            color: var(--danger);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo-main {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .logo-sub {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--danger);
+            letter-spacing: 1px;
+            background: #ffebee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--danger), #f44336);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 30px;
+            margin-left: 20px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            background: var(--light);
+        }
+
+        /* HERO SLIDER */
+        .hero-slider {
+            position: relative;
+            height: 90vh;
+            min-height: 650px;
+            overflow: hidden;
+            margin-top: -1px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide:nth-child(1) {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1551524165-6b6e5a6166f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .slide:nth-child(2) {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1563720223487-8b4c9b8ad5f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .slide:nth-child(3) {
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550565118-3a14e8d0386f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(26, 35, 126, 0.85), rgba(211, 47, 47, 0.7));
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: var(--text-light);
+            max-width: 800px;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 10%;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .slide-text {
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        .slide-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 18px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--danger), #f44336);
+            color: white;
+            box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(211, 47, 47, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            z-index: 10;
+        }
+
+        .slider-prev, .slider-next {
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .slider-prev:hover, .slider-next:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .slider-dots {
+            display: flex;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .slider-dots .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .slider-dots .dot.active {
+            background: white;
+            transform: scale(1.3);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        /* TECRÜBE BÖLÜMÜ */
+        .experience {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .experience .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .experience-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: var(--danger);
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 800;
+            padding: 15px 40px;
+            border-radius: 60px;
+            margin-bottom: 30px;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .experience h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .experience p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
+
+        .region-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .region-badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+        }
+
+        .region-badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
+        .highlight-red {
+            color: #ffcc00;
+            font-weight: 800;
+        }
+
+        /* HİZMETLER */
+        .services {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaf6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(83, 109, 254, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 800px;
+            margin: 25px auto 0;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border-left: 5px solid var(--danger);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--danger), #f44336);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .service-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            padding-right: 50px;
+        }
+
+        .service-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f5f7ff;
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: var(--danger);
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: var(--transition);
+            font-size: 15px;
+        }
+
+        .service-phone:hover {
+            background: var(--danger);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* NE YAPTIĞIMIZ - FOTOĞRAF GALERİSİ */
+        .gallery {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            height: 300px;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .gallery-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* NEDEN BİZ */
+        .why-us {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8eaf6 100%);
+            position: relative;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .why-us-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .why-us-content > p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .features {
+            display: grid;
+            gap: 30px;
+        }
+
+        .feature {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .feature h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .feature p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .stats-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 40px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(26, 35, 126, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .stats-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stats-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* İLETİŞİM (BASİT VERSİYON) */
+        .contact-simple {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .contact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px 30px;
+            border-radius: 20px;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            min-width: 250px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-10px);
+        }
+
+        .contact-btn i {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .contact-btn.phone i {
+            color: #4CAF50;
+        }
+
+        .contact-btn.whatsapp i {
+            color: #25D366;
+        }
+
+        .contact-btn h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-btn p {
+            font-size: 1.2rem;
+            font-weight: 700;
+            opacity: 0.9;
+        }
+
+        /* WHATSAPP BUTTON */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) rotate(10deg);
+            background: #128C7E;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo .logo {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo p {
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
+        .footer-links h4,
+        .footer-hours h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after,
+        .footer-hours h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 8px;
+        }
+
+        .footer-hours p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+        }
+
+        /* RESPONSIVE TASARIM */
+        @media (max-width: 1200px) {
+            .slide-title {
+                font-size: 3.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-slider {
+                height: 70vh;
+                min-height: 550px;
+            }
+            
+            .slide-title {
+                font-size: 2.8rem;
+            }
+            
+            .slide-text {
+                font-size: 1.3rem;
+            }
+            
+            .why-us-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .stats-box {
+                margin-top: 40px;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 100px 30px 30px;
+                box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                gap: 0;
+                z-index: 998;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links a {
+                padding: 15px;
+                width: 100%;
+                border-bottom: 1px solid #eee;
+                font-size: 18px;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+            
+            .nav-cta {
+                margin: 20px 0 0;
+                text-align: center;
+                justify-content: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+                z-index: 999;
+            }
+            
+            .emergency-bar .container {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+            
+            .slide-content {
+                margin-left: 0;
+                text-align: center;
+                align-items: center;
+                padding: 0 30px;
+            }
+            
+            .slide-title {
+                font-size: 2.3rem;
+            }
+            
+            .slide-text {
+                font-size: 1.1rem;
+            }
+            
+            .slide-buttons {
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .footer-links h4::after,
+            .footer-hours h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .footer-links a:hover {
+                padding-left: 0;
+            }
+            
+            .whatsapp-float {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-slider {
+                height: 60vh;
+                min-height: 450px;
+            }
+            
+            .slide-title {
+                font-size: 1.9rem;
+            }
+            
+            .slide-text {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                padding: 16px 25px;
+                font-size: 15px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .service-card {
+                padding: 30px 20px;
+            }
+            
+            .emergency-bar span {
+                font-size: 13px;
+            }
+            
+            .year-badge {
+                font-size: 2rem;
+                padding: 12px 30px;
+            }
+            
+            .experience h2 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-btn {
+                min-width: auto;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- DİL SEÇİCİ -->
+    <div class="language-selector">
+        <button class="lang-btn active" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ar">AR</button>
+    </div>
+
+    <!-- ACİL BANDI -->
+    <div class="emergency-bar" data-tr="Acil Durum: 0 (552) 496 78 73 | 7/24 Hizmet - 1998'den Beri | Hızlı Müdahale - Yerinde Çözüm"
+         data-en="Emergency: 0 (552) 496 78 73 | 24/7 Service - Since 1998 | Quick Response - On-site Solution"
+         data-ar="الطوارئ: 0 (552) 496 78 73 | خدمة 24/7 - منذ 1998 | استجابة سريعة - حل في الموقع">
+        <div class="container">
+            <span><i class="fas fa-phone-alt"></i> <span class="text">Acil Durum: 0 (552) 496 78 73</span></span>
+            <span><i class="fas fa-clock"></i> <span class="text">7/24 Hizmet - 1998'den Beri</span></span>
+            <span><i class="fas fa-bolt"></i> <span class="text">Hızlı Müdahale - Yerinde Çözüm</span></span>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-tire-pressure-warning"></i>
+                <div class="logo-text">
+                    <div class="logo-main" data-tr="ULUKIŞLA OTO LASTİK" data-en="ULUKIŞLA AUTO TIRE" data-ar="أولو كيشلا إطار السيارات">ULUKIŞLA OTO LASTİK</div>
+                    <div class="logo-sub" data-tr="1998'DEN BERİ YOLLARDAYIZ" data-en="ON THE ROADS SINCE 1998" data-ar="على الطرق منذ 1998">1998'DEN BERİ YOLLARDAYIZ</div>
+                </div>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#home" class="active"><i class="fas fa-home"></i> <span data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</span></a>
+                <a href="#experience"><i class="fas fa-history"></i> <span data-tr="Tecrübemiz" data-en="Experience" data-ar="خبرتنا">Tecrübemiz</span></a>
+                <a href="#services"><i class="fas fa-tools"></i> <span data-tr="Hizmetler" data-en="Services" data-ar="خدماتنا">Hizmetler</span></a>
+                <a href="#gallery"><i class="fas fa-images"></i> <span data-tr="Ne Yaptık?" data-en="Our Work" data-ar="ماذا عملنا؟">Ne Yaptık?</span></a>
+                <a href="#why-us"><i class="fas fa-star"></i> <span data-tr="Neden Biz?" data-en="Why Us?" data-ar="لماذا نحن؟">Neden Biz?</span></a>
+                <a href="#contact" class="nav-cta">
+                    <i class="fas fa-phone"></i> <span data-tr="HEMEN ARA" data-en="CALL NOW" data-ar="اتصل الآن">HEMEN ARA</span>
+                </a>
+            </div>
+            
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SLIDER -->
+    <section class="hero-slider" id="home">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-content">
+                    <h1 class="slide-title" data-tr="YOLDA KALDINIZ MI?" data-en="BROKEN DOWN ON THE ROAD?" data-ar="علقت على الطريق؟">YOLDA KALDINIZ MI?</h1>
+                    <p class="slide-text" data-tr="1998'den beri güveniniz bizimle güvende. Ereğli'den Adana Otobanı'na kadar 7/24 yanınızdayız." 
+                       data-en="Your trust is safe with us since 1998. We are with you 24/7 from Ereğli to Adana Highway."
+                       data-ar="ثقتك في أمان معنا منذ 1998. نحن معك على مدار الساعة من إرغلي إلى طريق أضنة السريع.">
+                       1998'den beri güveniniz bizimle güvende. Ereğli'den Adana Otobanı'na kadar 7/24 yanınızdayız.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="tel:05524967873" class="btn-primary">
+                            <i class="fas fa-phone"></i> <span data-tr="ACİL ÇAĞRI: 0552 496 78 73" data-en="EMERGENCY CALL: 0552 496 78 73" data-ar="اتصال طوارئ: 0552 496 78 73">ACİL ÇAĞRI: 0552 496 78 73</span>
+                        </a>
+                        <a href="https://wa.me/905524967873" target="_blank" class="btn-secondary">
+                            <i class="fab fa-whatsapp"></i> <span data-tr="WHATSAPP'TAN YAZ" data-en="MESSAGE ON WHATSAPP" data-ar="راسلنا على واتساب">WHATSAPP'TAN YAZ</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide-overlay"></div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="slide-title" data-tr="1998'DEN BERİ YOLLARDAYIZ" data-en="ON THE ROADS SINCE 1998" data-ar="على الطرق منذ 1998">1998'DEN BERİ YOLLARDAYIZ</h1>
+                    <p class="slide-text" data-tr="25+ yıllık tecrübemizle lastik sorunlarınıza anında çözüm. Profesyonel ekip, hızlı müdahale."
+                       data-en="25+ years of experience for instant solutions to your tire problems. Professional team, quick response."
+                       data-ar="25+ سنوات من الخبرة لحلول فورية لمشاكل إطاراتك. فريق محترف، استجابة سريعة.">
+                       25+ yıllık tecrübemizle lastik sorunlarınıza anında çözüm. Profesyonel ekip, hızlı müdahale.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="#services" class="btn-primary">
+                            <i class="fas fa-tools"></i> <span data-tr="10 HİZMETİMİZ" data-en="OUR 10 SERVICES" data-ar="خدماتنا العشر">10 HİZMETİMİZ</span>
+                        </a>
+                        <a href="tel:05524967873" class="btn-secondary">
+                            <i class="fas fa-headset"></i> <span data-tr="CANLI DESTEK" data-en="LIVE SUPPORT" data-ar="دعم مباشر">CANLI DESTEK</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide-overlay"></div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-content">
+                    <h1 class="slide-title" data-tr="GÜVENİNİZ BİZİMLE GÜVENDE" data-en="YOUR TRUST IS SAFE WITH US" data-ar="ثقتك في أمان معنا">GÜVENİNİZ BİZİMLE GÜVENDE</h1>
+                    <p class="slide-text" data-tr="İster ticari ister hususi araç olsun, yolda kalmanıza izin vermiyoruz. Bir telefon kadar yakınız."
+                       data-en="Whether commercial or private vehicle, we won't let you stay stranded. We're just a phone call away."
+                       data-ar="سواء كانت مركبة تجارية أو خاصة، لن نسمح لك بالبقاء عالقًا. نحن على بعد مكالمة هاتفية فقط.">
+                       İster ticari ister hususi araç olsun, yolda kalmanıza izin vermiyoruz. Bir telefon kadar yakınız.
+                    </p>
+                    <div class="slide-buttons">
+                        <a href="tel:05524967873" class="btn-primary">
+                            <i class="fas fa-tire"></i> <span data-tr="HEMEN YARDIM İSTEYİN" data-en="REQUEST HELP NOW" data-ar="اطلب المساعدة الآن">HEMEN YARDIM İSTEYİN</span>
+                        </a>
+                        <a href="#gallery" class="btn-secondary">
+                            <i class="fas fa-camera"></i> <span data-tr="ÇALIŞMALARIMIZI GÖRÜN" data-en="SEE OUR WORK" data-ar="شاهد أعمالنا">ÇALIŞMALARIMIZI GÖRÜN</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="slide-overlay"></div>
+            </div>
+        </div>
+        
+        <div class="slider-controls">
+            <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="slider-dots"></div>
+            <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- TECRÜBE BÖLÜMÜ -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <div class="experience-content">
+                <div class="year-badge">1998</div>
+                <h2 data-tr="1998'den Bu Yana Yollardayız, Güveniniz Bizimle Güvende" 
+                    data-en="On the Roads Since 1998, Your Trust is Safe With Us"
+                    data-ar="على الطرق منذ 1998، ثقتك في أمان معنا">
+                    1998'den Bu Yana Yollardayız, <span class="highlight-red">Güveniniz Bizimle Güvende</span>
+                </h2>
+                
+                <p data-tr="1998 yılından bu yana oto lastik sektöründe edindiğimiz tecrübe ile Ereğli Zengen bölgesi başta olmak üzere Aziziye, Çakmak, Ulukışla, Pozantı ve Adana Otobanı güzergâhında kesintisiz hizmet veriyoruz."
+                   data-en="Since 1998, with our experience in the auto tire sector, we provide uninterrupted service primarily in the Ereğli Zengen region, as well as along the Aziziye, Çakmak, Ulukışla, Pozantı and Adana Highway routes."
+                   data-ar="منذ عام 1998، مع خبرتنا في قطاع إطارات السيارات، نقدم خدمة دون انقطاع في منطقة إرغلي زينغن بشكل أساسي، وكذلك على طول طرق أزيزية، تشاكمك، أولوكيشلا، بوزانتي وطريق أضنة السريع.">
+                    1998 yılından bu yana oto lastik sektöründe edindiğimiz tecrübe ile <span class="highlight-red">Ereğli Zengen bölgesi</span> başta olmak üzere <span class="highlight-red">Aziziye, Çakmak, Ulukışla, Pozantı ve Adana Otobanı</span> güzergâhında kesintisiz hizmet veriyoruz.
+                </p>
+                
+                <p data-tr="Servis aracımızla yolda kalan sürücülerin yardımına anında koşuyor, her türlü lastik tamiri, onarım ve yol yardımını bulunduğunuz noktada profesyonelce gerçekleştiriyoruz."
+                   data-en="With our service vehicle, we immediately rush to help stranded drivers, professionally performing all kinds of tire repairs, maintenance and road assistance at your location."
+                   data-ar="بسيارتنا الخدمية، نسرع فورًا لمساعدة السائقين العالقين، ونقوم بتنفيذ جميع أنواع إصلاحات الإطارات والصيانة ومساعدة الطرق في موقعك باحترافية.">
+                    Servis aracımızla yolda kalan sürücülerin yardımına anında koşuyor, <span class="highlight-red">her türlü lastik tamiri, onarım ve yol yardımını</span> bulunduğunuz noktada profesyonelce gerçekleştiriyoruz.
+                </p>
+                
+                <div class="region-list">
+                    <div class="region-badge">Ereğli Zengen</div>
+                    <div class="region-badge">Aziziye</div>
+                    <div class="region-badge">Çakmak</div>
+                    <div class="region-badge">Ulukışla</div>
+                    <div class="region-badge">Pozantı</div>
+                    <div class="region-badge">Adana Otobanı</div>
+                </div>
+                
+                <p style="font-size: 1.5rem; margin-top: 30px; font-weight: 700; color: #ffcc00;">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    <span data-tr="Yolda kalırsanız panik yapmayın, bizi arayın. Tecrübe, hız ve güven… 1998'den beri değişmeyen hizmet"
+                          data-en="If you break down, don't panic, call us. Experience, speed and trust... Unchanging service since 1998."
+                          data-ar="إذا تعطلت، لا داعي للذعر، اتصل بنا. الخبرة، السرعة والثقة... خدمة لا تتغير منذ 1998.">
+                        Yolda kalırsanız panik yapmayın, bizi arayın.<br>
+                        Tecrübe, hız ve güven… 1998'den beri değişmeyen hizmet
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HİZMETLER -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-tr="10 TEMEL HİZMETİMİZ" data-en="OUR 10 BASIC SERVICES" data-ar="خدماتنا الأساسية العشر">10 TEMEL <span class="highlight">HİZMETİMİZ</span></h2>
+                <p class="section-subtitle" data-tr="1998'den beri sürdürdüğümüz kaliteli hizmet anlayışıyla her türlü lastik sorununuza çözüm üretiyoruz"
+                   data-en="With the quality service approach we have maintained since 1998, we provide solutions to all your tire problems"
+                   data-ar="مع نهج الخدمة عالية الجودة الذي حافظنا عليه منذ عام 1998، نقدم حلولاً لجميع مشاكل إطاراتك">
+                    1998'den beri sürdürdüğümüz kaliteli hizmet anlayışıyla her türlü lastik sorununuza çözüm üretiyoruz
+                </p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Hizmet 1 -->
+                <div class="service-card">
+                    <div class="service-number">1</div>
+                    <h3 class="service-title" data-tr="7/24 Lastik Yol Yardımı" data-en="24/7 Tire Road Assistance" data-ar="مساعدة الطريق للإطارات على مدار الساعة">7/24 Lastik Yol Yardımı</h3>
+                    <p data-tr="Yolda mı kaldınız? Gece gündüz demeden anında yardım için buradayız. Ereğli'den Adana Otobanı'na tüm güzergahta hizmet veriyoruz."
+                       data-en="Stranded on the road? We're here for immediate help day and night. We serve all routes from Ereğli to Adana Highway."
+                       data-ar="علقت على الطريق؟ نحن هنا للمساعدة الفورية ليلاً ونهاراً. نخدم جميع الطرق من إرغلي إلى طريق أضنة السريع.">
+                        Yolda mı kaldınız? Gece gündüz demeden anında yardım için buradayız. Ereğli'den Adana Otobanı'na tüm güzergahta hizmet veriyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 2 -->
+                <div class="service-card">
+                    <div class="service-number">2</div>
+                    <h3 class="service-title" data-tr="Mobil Lastik Değişimi" data-en="Mobile Tire Change" data-ar="تغيير الإطارات المتنقل">Mobil Lastik Değişimi</h3>
+                    <p data-tr="Lastiğiniz patladıysa yerinde değiştiriyoruz. Profesyonel ekipmanlarımızla aracınızın yanında lastik değişimini hızlıca yapıyoruz."
+                       data-en="If your tire is flat, we change it on the spot. With our professional equipment, we quickly change tires next to your vehicle."
+                       data-ar="إذا كانت إطارك منفوخاً، نغيرها في المكان. مع معداتنا الاحترافية، نغير الإطارات بسرعة بجانب مركبتك.">
+                        Lastiğiniz patladıysa yerinde değiştiriyoruz. Profesyonel ekipmanlarımızla aracınızın yanında lastik değişimini hızlıca yapıyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 3 -->
+                <div class="service-card">
+                    <div class="service-number">3</div>
+                    <h3 class="service-title" data-tr="Patlak Lastik Onarımı" data-en="Flat Tire Repair" data-ar="إصلاح الإطارات المثقوبة">Patlak Lastik Onarımı</h3>
+                    <p data-tr="Hızlı ve güvenilir lastik tamiri için bizi arayın. İçten ve dıştan yama teknikleriyle lastiğinizi orijinal haline getiriyoruz."
+                       data-en="Call us for fast and reliable tire repair. We restore your tire to its original condition with internal and external patching techniques."
+                       data-ar="اتصل بنا لإصلاح سريع وموثوق للإطارات. نعيد إطارك إلى حالته الأصلية بتقنيات الترقيع الداخلية والخارجية.">
+                        Hızlı ve güvenilir lastik tamiri için bizi arayın. İçten ve dıştan yama teknikleriyle lastiğinizi orijinal haline getiriyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 4 -->
+                <div class="service-card">
+                    <div class="service-number">4</div>
+                    <h3 class="service-title" data-tr="Profesyonel Ekipmanlı Yol Servisi" data-en="Professional Equipment Road Service" data-ar="خدمة طريق بمعدات احترافية">Profesyonel Ekipmanlı Yol Servisi</h3>
+                    <p data-tr="Donanımlı aracımızla bulunduğunuz konuma geliyoruz. Tüm tamir ekipmanlarımız servis aracımızda mevcuttur."
+                       data-en="We come to your location with our equipped vehicle. All our repair equipment is available in our service vehicle."
+                       data-ar="نأتي إلى موقعك بسيارتنا المجهزة. جميع معدات الإصلاح لدينا متوفرة في سيارتنا الخدمية.">
+                        Donanımlı aracımızla bulunduğunuz konuma geliyoruz. Tüm tamir ekipmanlarımız servis aracımızda mevcuttur.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 5 -->
+                <div class="service-card">
+                    <div class="service-number">5</div>
+                    <h3 class="service-title" data-tr="Hızlı Müdahale – Yerinde Çözüm" data-en="Quick Response - On-site Solution" data-ar="استجابة سريعة - حل في الموقع">Hızlı Müdahale – Yerinde Çözüm</h3>
+                    <p data-tr="Zaman kaybetmeden lastik sorununu çözüyoruz. Ortalama 30 dakika içinde lokasyonunuzdayız."
+                       data-en="We solve tire problems without wasting time. We are at your location within an average of 30 minutes."
+                       data-ar="نحل مشاكل الإطارات دون إضاعة الوقت. نحن في موقعك في غضون 30 دقيقة في المتوسط.">
+                        Zaman kaybetmeden lastik sorununu çözüyoruz. Ortalama 30 dakika içinde lokasyonunuzdayız.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 6 -->
+                <div class="service-card">
+                    <div class="service-number">6</div>
+                    <h3 class="service-title" data-tr="Binek ve Hafif Ticari Araçlar" data-en="Passenger and Light Commercial Vehicles" data-ar="المركبات الخاصة والتجارية الخفيفة">Binek ve Hafif Ticari Araçlar</h3>
+                    <p data-tr="Her araca uygun lastik yol yardımı. Otomobil, minibüs, panelvan, pikap gibi tüm araç tipleri için hizmet veriyoruz."
+                       data-en="Tire road assistance suitable for all vehicles. We serve all vehicle types such as cars, minibuses, vans, pickups."
+                       data-ar="مساعدة طريق الإطارات المناسبة لجميع المركبات. نخدم جميع أنواع المركبات مثل السيارات، الميني باص، الشاحنات الصغيرة، البيك أب.">
+                        Her araca uygun lastik yol yardımı. Otomobil, minibüs, panelvan, pikap gibi tüm araç tipleri için hizmet veriyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 7 -->
+                <div class="service-card">
+                    <div class="service-number">7</div>
+                    <h3 class="service-title" data-tr="Yerinde Lastik Tamiri" data-en="On-site Tire Repair" data-ar="إصلاح الإطارات في الموقع">Yerinde Lastik Tamiri</h3>
+                    <p data-tr="Çekiciye gerek kalmadan hizmet alabilirsiniz. Aracınızın bulunduğu yerde tamirini yapıyor, yola devam etmenizi sağlıyoruz."
+                       data-en="You can get service without needing a tow truck. We repair your vehicle where it is, allowing you to continue your journey."
+                       data-ar="يمكنك الحصول على الخدمة دون الحاجة إلى سيارة سحب. نقوم بإصلاح مركبتك حيث توجد، مما يسمح لك بمتابعة رحلتك.">
+                        Çekiciye gerek kalmadan hizmet alabilirsiniz. Aracınızın bulunduğu yerde tamirini yapıyor, yola devam etmenizi sağlıyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 8 -->
+                <div class="service-card">
+                    <div class="service-number">8</div>
+                    <h3 class="service-title" data-tr="Uygun Fiyat, Güvenilir Hizmet" data-en="Affordable Price, Reliable Service" data-ar="سعر مناسب، خدمة موثوقة">Uygun Fiyat, Güvenilir Hizmet</h3>
+                    <p data-tr="Kaliteli lastik yol servisi için arayın. Şeffaf fiyat politikası ile en uygun fiyatlara profesyonel hizmet sunuyoruz."
+                       data-en="Call for quality tire road service. We offer professional service at the most affordable prices with transparent pricing policy."
+                       data-ar="اتصل لخدمة طريق الإطارات عالية الجودة. نقدم خدمة احترافية بأفضل الأسعار مع سياسة تسعير شفافة.">
+                        Kaliteli lastik yol servisi için arayın. Şeffaf fiyat politikası ile en uygun fiyatlara profesyonel hizmet sunuyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 9 -->
+                <div class="service-card">
+                    <div class="service-number">9</div>
+                    <h3 class="service-title" data-tr="Güvenli ve Profesyonel Çalışma" data-en="Safe and Professional Work" data-ar="عمل آمن واحترافي">Güvenli ve Profesyonel Çalışma</h3>
+                    <p data-tr="Aracınıza zarar vermeden hizmet veriyoruz. 25 yıllık tecrübemizle en hassas araçlarda bile güvenle çalışıyoruz."
+                       data-en="We provide service without damaging your vehicle. With 25 years of experience, we work safely even on the most sensitive vehicles."
+                       data-ar="نقدم الخدمة دون الإضرار بمركبتك. مع 25 عامًا من الخبرة، نعمل بأمان حتى على أكثر المركبات حساسية.">
+                        Aracınıza zarar vermeden hizmet veriyoruz. 25 yıllık tecrübemizle en hassas araçlarda bile güvenle çalışıyoruz.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+                
+                <!-- Hizmet 10 -->
+                <div class="service-card">
+                    <div class="service-number">10</div>
+                    <h3 class="service-title" data-tr="Bir Telefon Kadar Yakınız" data-en="We're Just a Phone Call Away" data-ar="نحن على بعد مكالمة هاتفية فقط">Bir Telefon Kadar Yakınız</h3>
+                    <p data-tr="Lastik yol yardımı için hemen arayın. 7/24 açık telefon hattımızla her an yanınızdayız."
+                       data-en="Call immediately for tire road assistance. We are with you at all times with our 24/7 open phone line."
+                       data-ar="اتصل فوراً للحصول على مساعدة طريق الإطارات. نحن معك في جميع الأوقات مع خط هاتفنا المفتوح على مدار الساعة.">
+                        Lastik yol yardımı için hemen arayın. 7/24 açık telefon hattımızla her an yanınızdayız.
+                    </p>
+                    <a href="tel:05524967873" class="service-phone">
+                        <i class="fas fa-phone"></i> 0 (552) 496 78 73
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NE YAPTIĞIMIZ - FOTOĞRAF GALERİSİ -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-tr="NE YAPTIĞIMIZI GÖRÜN" data-en="SEE WHAT WE DO" data-ar="شاهد ما نقوم به">NE YAPTIĞIMIZI <span class="highlight">GÖRÜN</span></h2>
+                <p class="section-subtitle" data-tr="25 yıllık tecrübemizle gerçekleştirdiğimiz başarılı müdahalelerden örnekler"
+                   data-en="Examples of successful interventions we have performed with 25 years of experience"
+                   data-ar="أمثلة على التدخلات الناجحة التي قمنا بها بخبرة 25 عامًا">
+                    25 yıllık tecrübemizle gerçekleştirdiğimiz başarılı müdahalelerden örnekler
+                </p>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Foto 1 -->
+                <div class="gallery-item">
+                    <img src="galeri/emirhan2.jfif" alt="Acil Yol Yardımı">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title" data-tr="Acil Yol Yardımı" data-en="Emergency Road Assistance" data-ar="مساعدة الطريق الطارئة">Acil Yol Yardımı</h3>
+                        <p class="gallery-desc" data-tr="Ereğli çıkışında otoban üzerinde acil lastik değişimi"
+                           data-en="Emergency tire change on the highway at Ereğli exit"
+                           data-ar="تغيير إطار طارئ على الطريق السريع عند مخرج إرغلي">
+                            Ereğli çıkışında otoban üzerinde acil lastik değişimi
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Foto 2 -->
+                <div class="gallery-item">
+                    <img src="galeri/emirhan1.jfif" alt="Lastik Tamiri">
+                    <div class="gallery-overlay>
+                        <h3 class="gallery-title" data-tr="Profesyonel Lastik Tamiri" data-en="Professional Tire Repair" data-ar="إصلاح إطارات احترافي">Profesyonel Lastik Tamiri</h3>
+                        <p class="gallery-desc" data-tr="Adana Otobanı'nda içten yama tekniği ile tamir"
+                           data-en="Repair with internal patching technique on Adana Highway"
+                           data-ar="إصلاح بتقنية الترقيع الداخلية على طريق أضنة السريع">
+                            Adana Otobanı'nda içten yama tekniği ile tamir
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Foto 3 -->
+                <div class="gallery-item">
+                    <img src="galeri/emirhan 3,.jfif" alt="Mobil Servis">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title" data-tr="Mobil Servis Aracımız" data-en="Our Mobile Service Vehicle" data-ar="سيارتنا الخدمية المتنقلة">Mobil Servis Aracımız</h3>
+                        <p class="gallery-desc" data-tr="Tam donanımlı servis aracımız ile her yerdeyiz"
+                           data-en="We are everywhere with our fully equipped service vehicle"
+                           data-ar="نحن في كل مكان مع سيارتنا الخدمية المجهزة بالكامل">
+                            Tam donanımlı servis aracımız ile her yerdeyiz
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Foto 4 -->
+                <div class="gallery-item">
+                    <img src="galeri/emirhan 4.jfif" alt="Gece Müdahalesi">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title" data-tr="Gece Müdahalesi" data-en="Night Intervention" data-ar="تدخل ليلي">Gece Müdahalesi</h3>
+                        <p class="gallery-desc" data-tr="Pozantı'da gece saatlerinde acil lastik tamiri"
+                           data-en="Emergency tire repair at night in Pozantı"
+                           data-ar="إصلاح إطار طارئ ليلاً في بوزانتي">
+                            Pozantı'da gece saatlerinde acil lastik tamiri
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Foto 5 -->
+                <div class="gallery-item">
+                    <img src="galeri/emirhan 5.jfif" alt="Ticari Araç Servisi">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title" data-tr="Ticari Araç Servisi" data-en="Commercial Vehicle Service" data-ar="خدمة المركبات التجارية">Ticari Araç Servisi</h3>
+                        <p class="gallery-desc" data-tr="Minibüs lastik değişimi - Aziziye bölgesi"
+                           data-en="Minibus tire change - Aziziye region"
+                           data-ar="تغيير إطارات الميني باص - منطقة أزيزية">
+                            Minibüs lastik değişimi - Aziziye bölgesi
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Foto 6 -->
+                <div class="gallery-item">
+                    <img src="galeri/emirhan 6.jfif" alt="Müşteri Memnuniyeti">
+                    <div class="gallery-overlay">
+                        <h3 class="gallery-title" data-tr="Müşteri Memnuniyeti" data-en="Customer Satisfaction" data-ar="رضا العملاء">Müşteri Memnuniyeti</h3>
+                        <p class="gallery-desc" data-tr="Çakmak'ta kurtardığımız bir müşterimiz ile"
+                           data-en="With a customer we rescued in Çakmak"
+                           data-ar="مع عميل أنقذناه في تشاكمك">
+                            Çakmak'ta kurtardığımız bir müşterimiz ile
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <p style="font-size: 1.1rem; color: #666; max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    <i class="fas fa-camera" style="color: var(--accent); margin-right: 10px;"></i>
+                    <span data-tr="Daha fazla fotoğraf ve başarı hikayemiz için bizi arayın veya WhatsApp'tan yazın."
+                          data-en="Call us or message on WhatsApp for more photos and our success stories."
+                          data-ar="اتصل بنا أو راسلنا على واتساب لمزيد من الصور وقصص نجاحنا.">
+                        Daha fazla fotoğraf ve başarı hikayemiz için bizi arayın veya WhatsApp'tan yazın.
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEDEN BİZ -->
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title" data-tr="NEDEN ULUKIŞLA OTO LASTİK?" data-en="WHY ULUKIŞLA AUTO TIRE?" data-ar="لماذا أولو كيشلا إطار السيارات؟">NEDEN <span class="highlight">ULUKIŞLA OTO LASTİK?</span></h2>
+                <p class="section-subtitle" data-tr="25+ yıllık tecrübemiz ve müşteri memnuniyeti odaklı hizmet anlayışımızla fark yaratıyoruz"
+                   data-en="We make a difference with our 25+ years of experience and customer satisfaction-focused service approach"
+                   data-ar="نصنع فرقًا بخبرتنا التي تزيد عن 25 عامًا ونهج الخدمة المرتكز على رضا العملاء">
+                    25+ yıllık tecrübemiz ve müşteri memnuniyeti odaklı hizmet anlayışımızla fark yaratıyoruz
+                </p>
+            </div>
+            
+            <div class="why-us-grid">
+                <div class="why-us-content">
+                    <h2 data-tr="Ulukışla Oto Lastik Farkı" data-en="Ulukışla Auto Tire Difference" data-ar="فرق أولو كيشلا إطار السيارات">Ulukışla Oto Lastik Farkı</h2>
+                    <p data-tr="1998'den beri Ereğli bölgesinde güvenilir lastik hizmeti veriyoruz. Her geçen gün büyüyen müşteri portföyümüz, kaliteli hizmet anlayışımızın en büyük kanıtıdır."
+                       data-en="We have been providing reliable tire service in the Ereğli region since 1998. Our growing customer portfolio every day is the biggest proof of our quality service approach."
+                       data-ar="نقدم خدمة إطارات موثوقة في منطقة إرغلي منذ عام 1998. محفظة عملائنا المتزايدة كل يوم هي أكبر دليل على نهج خدمتنا عالية الجودة.">
+                        1998'den beri Ereğli bölgesinde güvenilir lastik hizmeti veriyoruz. Her geçen gün büyüyen müşteri portföyümüz, kaliteli hizmet anlayışımızın en büyük kanıtıdır.
+                    </p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-history feature-icon"></i>
+                            <div>
+                                <h4 data-tr="25+ Yıllık Tecrübe" data-en="25+ Years of Experience" data-ar="25+ عامًا من الخبرة">25+ Yıllık Tecrübe</h4>
+                                <p data-tr="1998'den beri aynı kalitede hizmet veriyoruz. Nesilden nesile aktarılan mesleki bilgi ve birikim."
+                                   data-en="We have been providing service with the same quality since 1998. Professional knowledge and experience passed down from generation to generation."
+                                   data-ar="نقدم الخدمة بنفس الجودة منذ عام 1998. المعرفة المهنية والخبرة التي تنتقل من جيل إلى جيل.">
+                                    1998'den beri aynı kalitede hizmet veriyoruz. Nesilden nesile aktarılan mesleki bilgi ve birikim.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <i class="fas fa-bolt feature-icon"></i>
+                            <div>
+                                <h4 data-tr="Anında Müdahale" data-en="Instant Intervention" data-ar="تدخل فوري">Anında Müdahale</h4>
+                                <p data-tr="Ereğli'den Adana Otobanı'na tüm bölgede hızlı ulaşım. GPS destekli araç takip sistemimizle en kısa yoldan yanınızdayız."
+                                   data-en="Quick access throughout the region from Ereğli to Adana Highway. We are with you via the shortest route with our GPS-supported vehicle tracking system."
+                                   data-ar="وصول سريع في جميع أنحاء المنطقة من إرغلي إلى طريق أضنة السريع. نحن معك عبر أقصر طريق مع نظام تتبع المركبات المدعوم بـ GPS.">
+                                    Ereğli'den Adana Otobanı'na tüm bölgede hızlı ulaşım. GPS destekli araç takip sistemimizle en kısa yoldan yanınızdayız.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <div>
+                                <h4 data-tr="Güven Garantisi" data-en="Security Guarantee" data-ar="ضمان الأمان">Güven Garantisi</h4>
+                                <p data-tr="Tüm işlemlerde kalite ve güven garantisi veriyoruz. Kullandığımız ekipmanlar ve malzemeler sertifikalıdır."
+                                   data-en="We provide quality and security guarantee in all transactions. The equipment and materials we use are certified."
+                                   data-ar="نقدم ضمان الجودة والأمان في جميع المعاملات. المعدات والمواد التي نستخدمها معتمدة.">
+                                    Tüm işlemlerde kalite ve güven garantisi veriyoruz. Kullandığımız ekipmanlar ve malzemeler sertifikalıdır.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <i class="fas fa-map-marked-alt feature-icon"></i>
+                            <div>
+                                <h4 data-tr="Geniş Hizmet Bölgesi" data-en="Wide Service Area" data-ar="منطقة خدمة واسعة">Geniş Hizmet Bölgesi</h4>
+                                <p data-tr="Ereğli, Aziziye, Çakmak, Ulukışla, Pozantı, Adana Otobanı. Tüm bölgede kesintisiz hizmet."
+                                   data-en="Ereğli, Aziziye, Çakmak, Ulukışla, Pozantı, Adana Highway. Uninterrupted service throughout the region."
+                                   data-ar="إرغلي، أزيزية، تشاكمك، أولوكيشلا، بوزانتي، طريق أضنة السريع. خدمة دون انقطاع في جميع أنحاء المنطقة.">
+                                    Ereğli, Aziziye, Çakmak, Ulukışla, Pozantı, Adana Otobanı. Tüm bölgede kesintisiz hizmet.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-box">
+                    <div class="stats-number">25+</div>
+                    <div class="stats-label" data-tr="Yıllık Tecrübe" data-en="Years of Experience" data-ar="سنوات من الخبرة">Yıllık Tecrübe</div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stats-number">7/24</div>
+                            <div class="stats-label" data-tr="Kesintisiz Hizmet" data-en="24/7 Service" data-ar="خدمة 24/7">Kesintisiz Hizmet</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stats-number">30dk</div>
+                            <div class="stats-label" data-tr="Ort. Müdahale Süresi" data-en="Avg. Response Time" data-ar="متوسط وقت الاستجابة">Ort. Müdahale Süresi</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stats-number">6</div>
+                            <div class="stats-label" data-tr="İlçe/Bölge" data-en="Districts/Regions" data-ar="مناطق">İlçe/Bölge</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stats-number">%100</div>
+                            <div class="stats-label" data-tr="Müşteri Memnuniyeti" data-en="Customer Satisfaction" data-ar="رضا العملاء">Müşteri Memnuniyeti</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İLETİŞİM (BASİT VERSİYON) -->
+    <section class="contact-simple" id="contact">
+        <div class="container">
+            <div class="section-header" style="color: white;">
+                <h2 class="section-title" style="color: white;" data-tr="BİR TELEFON KADAR YAKINIZ" data-en="WE'RE JUST A PHONE CALL AWAY" data-ar="نحن على بعد مكالمة هاتفية فقط">BİR TELEFON KADAR <span style="color: #ffcc00;">YAKINIZ</span></h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-tr="Acil durumlarda hemen arayın veya WhatsApp'tan yazın. 7/24 yanınızdayız."
+                   data-en="Call immediately in emergencies or message on WhatsApp. We are with you 24/7."
+                   data-ar="اتصل فورًا في حالات الطوارئ أو راسل على واتساب. نحن معك على مدار الساعة.">
+                    Acil durumlarda hemen arayın veya WhatsApp'tan yazın. 7/24 yanınızdayız.
+                </p>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="tel:05524967873" class="contact-btn phone">
+                    <i class="fas fa-phone"></i>
+                    <h3 data-tr="HEMEN ARA" data-en="CALL NOW" data-ar="اتصل الآن">HEMEN ARA</h3>
+                    <p>0 (552) 496 78 73</p>
+                    <small data-tr="7/24 Açık Hat" data-en="24/7 Open Line" data-ar="خط مفتوح 24/7">7/24 Açık Hat</small>
+                </a>
+                
+                <a href="https://wa.me/905524967873" target="_blank" class="contact-btn whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3 data-tr="WHATSAPP'TAN YAZ" data-en="MESSAGE ON WHATSAPP" data-ar="راسل على واتساب">WHATSAPP'TAN YAZ</h3>
+                    <p>0552 496 78 73</p>
+                    <small data-tr="Canlı Destek" data-en="Live Support" data-ar="دعم مباشر">Canlı Destek</small>
+                </a>
+            </div>
+            
+            <div style="margin-top: 60px; color: rgba(255,255,255,0.8); text-align: center;">
+                <p style="font-size: 1.2rem; margin-bottom: 15px;">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                    <span data-tr="Hizmet Bölgelerimiz: Ereğli, Aziziye, Çakmak, Ulukışla, Pozantı, Adana Otobanı"
+                          data-en="Our Service Areas: Ereğli, Aziziye, Çakmak, Ulukışla, Pozantı, Adana Highway"
+                          data-ar="مناطق خدمتنا: إرغلي، أزيزية، تشاكمك، أولوكيشلا، بوزانتي، طريق أضنة السريع">
+                        Hizmet Bölgelerimiz: Ereğli, Aziziye, Çakmak, Ulukışla, Pozantı, Adana Otobanı
+                    </span>
+                </p>
+                <p style="font-size: 1.1rem;">
+                    <i class="fas fa-clock" style="margin-right: 10px;"></i>
+                    <span data-tr="1998'den Beri Hiç Kapanmadık" data-en="Never Closed Since 1998" data-ar="لم نغلق منذ 1998">
+                        1998'den Beri Hiç Kapanmadık
+                    </span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/905524967873" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">
+                        <i class="fas fa-tire-pressure-warning"></i>
+                        <div class="logo-text">
+                            <div class="logo-main" data-tr="ULUKIŞLA OTO LASTİK" data-en="ULUKIŞLA AUTO TIRE" data-ar="أولو كيشلا إطار السيارات">ULUKIŞLA OTO LASTİK</div>
+                            <div class="logo-sub" data-tr="1998'DEN BERİ YOLLARDAYIZ" data-en="ON THE ROADS SINCE 1998" data-ar="على الطرق منذ 1998">1998'DEN BERİ YOLLARDAYIZ</div>
+                        </div>
+                    </a>
+                    <p data-tr="1998'den beri Ereğli bölgesinde güvenilir lastik tamiri, yol yardımı ve acil servis hizmeti veriyoruz. Uzun yıllara dayanan tecrübemiz ve müşteri memnuniyeti odaklı hizmet anlayışımızla yanınızdayız."
+                       data-en="Since 1998, we have been providing reliable tire repair, road assistance and emergency service in the Ereğli region. We are with you with our long-standing experience and customer satisfaction-focused service approach."
+                       data-ar="منذ عام 1998، نقدم إصلاح إطارات موثوقًا، ومساعدة الطرق وخدمة الطوارئ في منطقة إرغلي. نحن معك بخبرتنا طويلة الأمد ونهج الخدمة المرتكز على رضا العملاء.">
+                        1998'den beri Ereğli bölgesinde güvenilir lastik tamiri, yol yardımı ve acil servis hizmeti veriyoruz. Uzun yıllara dayanan tecrübemiz ve müşteri memnuniyeti odaklı hizmet anlayışımızla yanınızdayız.
+                    </p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4 data-tr="Hızlı Linkler" data-en="Quick Links" data-ar="روابط سريعة">Hızlı Linkler</h4>
+                    <a href="#home"><i class="fas fa-chevron-right"></i> <span data-tr="Ana Sayfa" data-en="Home" data-ar="الرئيسية">Ana Sayfa</span></a>
+                    <a href="#experience"><i class="fas fa-chevron-right"></i> <span data-tr="Tecrübemiz" data-en="Experience" data-ar="خبرتنا">Tecrübemiz</span></a>
+                    <a href="#services"><i class="fas fa-chevron-right"></i> <span data-tr="Hizmetler" data-en="Services" data-ar="خدماتنا">Hizmetler</span></a>
+                    <a href="#gallery"><i class="fas fa-chevron-right"></i> <span data-tr="Ne Yaptık?" data-en="Our Work" data-ar="ماذا عملنا؟">Ne Yaptık?</span></a>
+                    <a href="#why-us"><i class="fas fa-chevron-right"></i> <span data-tr="Neden Biz?" data-en="Why Us?" data-ar="لماذا نحن؟">Neden Biz?</span></a>
+                </div>
+                
+                <div class="footer-hours">
+                    <h4 data-tr="Çalışma Saatleri" data-en="Working Hours" data-ar="ساعات العمل">Çalışma Saatleri</h4>
+                    <p><strong data-tr="1998'den Beri:" data-en="Since 1998:" data-ar="منذ 1998:">1998'den Beri:</strong> 7/24</p>
+                    <p><strong data-tr="Resmi Tatiller:" data-en="Official Holidays:" data-ar="العطل الرسمية:">Resmi Tatiller:</strong> <span data-tr="Açığız" data-en="Open" data-ar="مفتوح">Açığız</span></p>
+                    <p><strong data-tr="Bayramlar:" data-en="Holidays:" data-ar="الأعياد:">Bayramlar:</strong> <span data-tr="Açığız" data-en="Open" data-ar="مفتوح">Açığız</span></p>
+                    <p style="color: #4CAF50; font-weight: 600; margin-top: 15px;">
+                        <i class="fas fa-check-circle"></i> 
+                        <span data-tr="25 YILDIR HİÇ KAPANMADIK" data-en="HAVEN'T CLOSED FOR 25 YEARS" data-ar="لم نغلق لمدة 25 عامًا">25 YILDIR HİÇ KAPANMADIK</span>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 1998 - 2024 Ulukışla Oto Lastik. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved." data-ar="جميع الحقوق محفوظة.">Tüm hakları saklıdır.</span> | Ereğli / Konya</p>
+                <p style="margin-top: 10px; font-size: 13px;">
+                    <span data-tr="Tecrübe, hız ve güven… 1998'den beri değişmeyen hizmet kalitemiz"
+                          data-en="Experience, speed and trust... Our service quality that hasn't changed since 1998"
+                          data-ar="الخبرة، السرعة والثقة... جودة خدمتنا التي لم تتغير منذ 1998">
+                        Tecrübe, hız ve güven… 1998'den beri değişmeyen hizmet kalitemiz
+                    </span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DİL DEĞİŞTİRME SİSTEMİ
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const currentLang = localStorage.getItem('ulukisla_lang') || 'tr';
+            
+            // Aktif dili ayarla
+            setLanguage(currentLang);
+            
+            // Dil butonlarına tıklama
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    
+                    // Aktif butonu güncelle
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Dili değiştir
+                    setLanguage(lang);
+                    
+                    // Dili localStorage'a kaydet
+                    localStorage.setItem('ulukisla_lang', lang);
+                });
+            });
+            
+            function setLanguage(lang) {
+                // Body class'ını güncelle
+                document.body.className = '';
+                if (lang === 'ar') {
+                    document.body.classList.add('arabic');
+                }
+                
+                // Tüm çoklu dil elementlerini güncelle
+                document.querySelectorAll('[data-tr]').forEach(element => {
+                    const text = element.getAttribute(`data-${lang}`) || element.getAttribute('data-tr');
+                    
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                });
+                
+                // Özel elementleri güncelle
+                const emergencyBar = document.querySelector('.emergency-bar');
+                if (emergencyBar) {
+                    const emergencyText = emergencyBar.getAttribute(`data-${lang}`) || emergencyBar.getAttribute('data-tr');
+                    const parts = emergencyText.split(' | ');
+                    
+                    const textElements = emergencyBar.querySelectorAll('.text');
+                    if (textElements.length >= 3) {
+                        textElements[0].textContent = parts[0] || '';
+                        textElements[1].textContent = parts[1] || '';
+                        textElements[2].textContent = parts[2] || '';
+                    }
+                }
+            }
+            
+            // SLIDER FONKSİYONALİTESİ
+            const slides = document.querySelectorAll('.slide');
+            const dotsContainer = document.querySelector('.slider-dots');
+            const prevBtn = document.querySelector('.slider-prev');
+            const nextBtn = document.querySelector('.slider-next');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // Dots oluştur
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                dotsContainer.appendChild(dot);
+            });
+            
+            const dots = document.querySelectorAll('.dot');
+            
+            function goToSlide(n) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = (n + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+            
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            function prevSlide() {
+                goToSlide(currentSlide - 1);
+            }
+            
+            function startSlider() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            function stopSlider() {
+                clearInterval(slideInterval);
+            }
+            
+            startSlider();
+            
+            nextBtn.addEventListener('click', () => {
+                stopSlider();
+                nextSlide();
+                startSlider();
+            });
+            
+            prevBtn.addEventListener('click', () => {
+                stopSlider();
+                prevSlide();
+                startSlider();
+            });
+            
+            const slider = document.querySelector('.hero-slider');
+            slider.addEventListener('mouseenter', stopSlider);
+            slider.addEventListener('mouseleave', startSlider);
+            
+            // MOBİL MENÜ
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // AKTİF MENÜ LİNKİ
+            function setActiveNav() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('.nav-links a');
+                
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', setActiveNav);
+            
+            // TELEFON ARAMA İŞLEMLERİ
+            document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Mobil cihaz kontrolü
+                    const isMobile = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
+                    // Masaüstü bilgisayarda ise
+                    if (!isMobile) {
+                        e.preventDefault();
+                        
+                        const phoneNumber = '05524967873';
+                        const currentLang = localStorage.getItem('ulukisla_lang') || 'tr';
+                        
+                        const messages = {
+                            tr: `🚨 ACİL LASTİK YARDIMI 🚨\n\n📞 Telefon Numarası:\n0 (552) 496 78 73\n\nBu numarayı telefonunuzdan arayabilir veya panoya kopyalayabilirsiniz.`,
+                            en: `🚨 EMERGENCY TIRE ASSISTANCE 🚨\n\n📞 Phone Number:\n0 (552) 496 78 73\n\nYou can call this number from your phone or copy it to clipboard.`,
+                            ar: `🚨 مساعدة الطوارئ للإطارات 🚨\n\n📞 رقم الهاتف:\n0 (552) 496 78 73\n\nيمكنك الاتصال بهذا الرقم من هاتفك أو نسخه إلى الحافظة.`
+                        };
+                        
+                        if (confirm(messages[currentLang])) {
+                            navigator.clipboard.writeText(phoneNumber)
+                                .then(() => {
+                                    const copyMessages = {
+                                        tr: '✅ Telefon numarası panoya kopyalandı!',
+                                        en: '✅ Phone number copied to clipboard!',
+                                        ar: '✅ تم نسخ رقم الهاتف إلى الحافظة!'
+                                    };
+                                    alert(copyMessages[currentLang]);
+                                })
+                                .catch(err => {
+                                    console.error('Kopyalama hatası:', err);
+                                    alert('Telefon Numarası: 0 (552) 496 78 73\nLütfen bu numarayı kopyalayın.');
+                                });
+                        }
+                    }
+                });
+            });
+            
+            // WHATSAPP BUTTON
+            document.querySelector('.whatsapp-float').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const currentLang = localStorage.getItem('ulukisla_lang') || 'tr';
+                
+                const messages = {
+                    tr: "Merhaba, Ulukışla Oto Lastik. Lastik yol yardımı hizmetiniz hakkında bilgi almak istiyorum.",
+                    en: "Hello, Ulukışla Auto Tire. I would like to get information about your tire road assistance service.",
+                    ar: "مرحبًا، أولو كيشلا إطار السيارات. أود الحصول على معلومات حول خدمة مساعدة طريق الإطارات الخاصة بك."
+                };
+                
+                const phone = "905524967873";
+                const url = `https://wa.me/${phone}?text=${encodeURIComponent(messages[currentLang])}`;
+                
+                window.open(url, '_blank');
+            });
+            
+            // Emergency bar'a tıklayınca arama
+            document.querySelector('.emergency-bar').addEventListener('click', function() {
+                if (/Mobi|Android/i.test(navigator.userAgent)) {
+                    window.location.href = 'tel:05524967873';
+                }
+            });
+            
+            // SAYFA GEÇİŞİ
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // ANİMASYONLAR
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.service-card, .feature, .gallery-item, .stats-box, .region-badge, .contact-btn');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.2;
+                    
+                    if (elementPosition < screenPosition) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+            
+            document.querySelectorAll('.service-card, .feature, .gallery-item, .stats-box, .region-badge, .contact-btn').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+            
+            window.addEventListener('scroll', animateOnScroll);
+            
+            setTimeout(animateOnScroll, 500);
+        });
+        
+        // SAYAÇ
+        if (!localStorage.getItem('ulukislaVisitCount')) {
+            localStorage.setItem('ulukislaVisitCount', '1');
+        } else {
+            let count = parseInt(localStorage.getItem('ulukislaVisitCount'));
+            localStorage.setItem('ulukislaVisitCount', (count + 1).toString());
+        }
+    </script>
+</body>
+</html>
